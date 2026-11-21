@@ -12,9 +12,9 @@ repo: morsel-status
 
 sites:
   # The live check of the API, the records database and the food catalog. It answers 503
-  # while any of them is down. (Until /v1/status is deployed, this checks /health.)
+  # while any of them is down.
   - name: Morsel service
-    url: https://morsel-dev-api-1087699136488.us-east1.run.app/health
+    url: https://morsel-dev-api-1087699136488.us-east1.run.app/v1/status
     maxResponseTime: 3000
   # The address people paste into their assistant. Without a sign-in it answers 401 with a
   # challenge, which shows the MCP endpoint is up and asking for sign-in as it should.
