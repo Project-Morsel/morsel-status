@@ -10,40 +10,98 @@
 owner: Project-Morsel
 repo: morsel-status
 
+# Each site keeps an explicit slug: history, graphs and the page's URLs are keyed by it, so a
+# display name can change without starting a new history.
 sites:
   # The live check of the API, the records database and the food catalog. It answers 503
   # while any of them is down.
   - name: Morsel service
+    slug: morsel-service
+    icon: https://status.projectmorsel.com/favicon.svg
     url: https://morsel-dev-api-1087699136488.us-east1.run.app/v1/status
     maxResponseTime: 3000
   # The address people paste into their assistant. Without a sign-in it answers 401 with a
   # challenge, which shows the MCP endpoint is up and asking for sign-in as it should.
   - name: Assistant connection (MCP)
+    slug: assistant-connection-mcp
+    icon: https://status.projectmorsel.com/favicon.svg
     url: https://morsel-dev-api-1087699136488.us-east1.run.app/mcp
     expectedStatusCodes:
       - 401
     maxResponseTime: 3000
   - name: Web app
+    slug: web-app
+    icon: https://status.projectmorsel.com/favicon.svg
     url: https://morsel-dev-web-1087699136488.us-east1.run.app/
   - name: Website
+    slug: website
+    icon: https://status.projectmorsel.com/favicon.svg
     url: https://projectmorsel.web.app/
 
 status-website:
   # Needs the DNS record "CNAME status -> project-morsel.github.io". The github.io address
   # redirects here.
   cname: status.projectmorsel.com
-  name: Morsel status
-  logoUrl: https://projectmorsel.web.app/icon.svg
+  name: Status
+  logoUrl: https://status.projectmorsel.com/logo.svg
+  faviconSvg: https://status.projectmorsel.com/favicon.svg
+  # Colours (themeUrl replaces Upptime's light theme), then type, spacing and shape, which
+  # load after Upptime's global.css. Both live in assets/, copied to the site's root. These
+  # addresses must be absolute: the site export crawls root-relative ones and creates
+  # folders with their names, which then block copying the assets.
+  themeUrl: https://status.projectmorsel.com/morsel-theme.css
+  links:
+    - rel: stylesheet
+      href: https://status.projectmorsel.com/morsel.css
+  metaTags:
+    - name: description
+      content: Availability and recent incidents for Morsel.
   introTitle: "Is Morsel up?"
   introMessage: >-
-    An outside monitor checks Morsel every five minutes and keeps the record here. Morsel's
-    app has a live check of each part at its /status page.
-  theme: light
+    Availability and recent incidents for Morsel. An outside monitor checks each service
+    about every five minutes. Monitoring began on 21 November 2026, so uptime covers only
+    the days since.
   navbar:
-    - title: Status
-      href: /
     - title: Morsel
       href: https://projectmorsel.web.app/
+    - title: Support
+      href: mailto:hello@projectmorsel.com
+  robotsText: "User-agent: *\nAllow: /"
+
+# Words on the page. Anything not listed keeps Upptime's default.
+i18n:
+  allSystemsOperational: No open incidents
+  activeIncidents: Open incidents
+  activeIncidentSummary: "Opened $DATE. Updates: $POSTS"
+  pastIncidents: Past incidents
+  pastIncidentsResolved: "Resolved after $MINUTES minutes. Updates: $POSTS"
+  incidentReport: Details
+  incidentTitle: Incident $NUMBER
+  incidentDetails: Details
+  incidentOngoing: Ongoing
+  incidentFixed: Resolved
+  incidentClosedAt: Resolved at
+  incidentViewOnGitHub: Follow this incident on GitHub
+  incidentCommentSummary: $DATE, from $AUTHOR
+  incidentBack: "← All incidents"
+  liveStatus: Services
+  overallUptime: "Uptime: $UPTIME"
+  overallUptimeTitle: Uptime since monitoring began
+  averageResponseTime: "Average response: $TIME ms"
+  averageResponseTimeTitle: Average response
+  sevelDayResponseTime: Response time, last 7 days
+  responseTimeMs: Response time (ms)
+  ms: " ms"
+  up: Working
+  down: Down
+  degraded: Slow
+  duration24H: 24 hours
+  duration7D: 7 days
+  duration30D: 30 days
+  errorTitle: We couldn't load the status
+  errorIntro: The page couldn't fetch the latest results from GitHub, where the monitor keeps them.
+  errorText: This says nothing about whether Morsel is up. Try again in a minute.
+  footer: "Questions: [hello@projectmorsel.com](mailto:hello@projectmorsel.com). Every incident is kept [on GitHub]($REPO/issues?q=label%3Astatus). Monitoring by [Upptime](https://upptime.js.org)."
 
 skipDescriptionUpdate: true
 skipTopicsUpdate: true

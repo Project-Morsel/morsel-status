@@ -1,0 +1,334 @@
+/* Morsel's type, spacing and shape for the Upptime status page (status-website.links, so it
+   loads after Upptime's global.css). Selectors use the page's stable element names, ids and
+   classes (nav, .container, .logo, .live-status, article.up/.down/.degraded, the duration
+   inputs' ids), never Svelte's generated svelte-* classes. A few !important flags override
+   component-scoped rules that use those generated classes. */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem !important;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--forest);
+  text-underline-offset: 0.15em;
+}
+
+a:focus-visible,
+input:focus-visible + label {
+  outline: 3px solid var(--forest);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 1.3rem + 2vw, 2.4rem);
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 0.95rem;
+  opacity: 1;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.container {
+  max-width: 46rem;
+  padding: 0 1.25rem;
+}
+
+/* Header: logo and "Status" on the left, a few links on the right; wraps on a phone. */
+nav {
+  padding: 0 !important;
+  margin-bottom: 2rem !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  font-weight: 500 !important;
+}
+
+nav .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+nav .container .logo {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0.25rem 0 !important;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-weight: 600 !important;
+  font-size: 1rem;
+}
+
+nav .container .logo img {
+  height: 26px !important;
+  width: auto;
+  margin: 0 !important;
+}
+
+nav .container .logo div {
+  padding-left: 0.6rem;
+  border-left: 1px solid var(--line);
+  line-height: 1.6;
+}
+
+nav .container ul {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+nav .container ul a {
+  padding: 0.6rem 0.7rem !important;
+  min-height: 44px;
+  box-sizing: border-box;
+  display: flex !important;
+  align-items: center;
+  color: var(--ink);
+  border-radius: 12px;
+}
+
+nav .container ul a:hover {
+  background: var(--complete-bg);
+}
+
+nav [aria-current] {
+  border-bottom: 0;
+  background: var(--complete-bg);
+}
+
+/* Introduction. */
+main.container > header {
+  margin-bottom: 1.5rem;
+}
+
+main.container > header p {
+  font-size: 1.05rem !important;
+  color: var(--muted);
+  max-width: 38rem;
+}
+
+/* Cards. */
+article {
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  box-shadow: none;
+}
+
+article.up,
+article.down,
+article.degraded {
+  border-left-width: 4px;
+}
+
+article + article {
+  margin-top: 0.6rem;
+}
+
+/* "No open incidents": Upptime shows it when no incident issue is open. The check mark it
+   prints is hidden; a forest dot (a shape, not only a colour) and the text carry the state. */
+main.container > article.up {
+  font-size: 1.15rem;
+  font-weight: 650;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+main.container > article.up::first-letter {
+  font-size: 0;
+  color: transparent;
+}
+
+main.container > article.up {
+  padding-left: 2.6rem;
+  background-image: radial-gradient(circle at 1.35rem 50%, var(--forest) 0.36rem, var(--complete-bg) 0.38rem, var(--complete-bg) 0.7rem, transparent 0.72rem);
+  background-repeat: no-repeat;
+}
+
+/* Open incidents stand out; past ones are calm. */
+article.down-active {
+  border-color: var(--error-ink);
+}
+
+article.down h4,
+article.degraded h4 {
+  margin-bottom: 0.25rem;
+}
+
+/* Services: the period picker, then one card per service. */
+.f.changed,
+main.container > div.f {
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+main.container > div.f h2 {
+  margin: 0;
+}
+
+/* Upptime hides the period inputs with display: none, which takes them out of keyboard reach.
+   Keep them invisible but focusable; the label shows the focus. */
+main.container > div.f form input[type="radio"] {
+  display: inline-block !important;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+main.container > div.f form label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 0 !important;
+  padding: 0 0.75rem;
+  border-radius: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+main.container > div.f form input:checked + label {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* A year and "all" would read as a year of data; monitoring is newer than that. */
+label[for="data_year"],
+label[for="data_all"] {
+  display: none !important;
+}
+
+.live-status article.graph {
+  background-image: none !important;
+  padding-right: 1.25rem;
+  overflow: hidden;
+}
+
+/* The response-time graph stays, smaller and quieter, behind the right side of the card. */
+.live-status article.graph::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  background-image: var(--background);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  border-radius: 0 20px 20px 0;
+}
+
+.live-status article h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.live-status article h4 a {
+  color: var(--ink);
+}
+
+.live-status article h4 img {
+  display: none;
+}
+
+/* The state in words, with a shape, so it never rests on colour alone. */
+.live-status article h4::after {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  position: relative;
+  z-index: 1;
+}
+
+.live-status article.up h4::after {
+  content: "\25CF  Working";
+  background: var(--complete-bg);
+  color: var(--forest);
+}
+
+.live-status article.degraded h4::after {
+  content: "\25B2  Slow";
+  background: var(--partial-bg);
+  color: var(--partial-ink);
+}
+
+.live-status article.down h4::after {
+  content: "\25A0  Down";
+  background: var(--error-bg);
+  color: var(--error-ink);
+}
+
+.live-status article > div {
+  color: var(--muted);
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.live-status .data {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* Detail pages: the state tag and the definition list. */
+.tag {
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+dl dt {
+  font-weight: 650;
+}
+
+/* Footer. */
+footer {
+  box-sizing: border-box;
+  max-width: 46rem;
+  margin: 3rem auto 0 !important;
+  padding: 1.25rem 1.25rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  opacity: 1 !important;
+  font-size: 0.9rem;
+  text-align: left !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
