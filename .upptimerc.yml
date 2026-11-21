@@ -36,7 +36,7 @@ sites:
   - name: Website
     slug: website
     icon: https://status.projectmorsel.com/favicon.svg
-    url: https://projectmorsel.web.app/
+    url: https://www.projectmorsel.com/
 
 status-website:
   # Needs the DNS record "CNAME status -> project-morsel.github.io". The github.io address
@@ -63,7 +63,7 @@ status-website:
     the days since.
   navbar:
     - title: Morsel
-      href: https://projectmorsel.web.app/
+      href: https://www.projectmorsel.com/
     - title: Support
       href: mailto:hello@projectmorsel.com
   robotsText: "User-agent: *\nAllow: /"
