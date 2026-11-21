@@ -18,21 +18,21 @@ sites:
   - name: Morsel service
     slug: morsel-service
     icon: https://status.projectmorsel.com/favicon.svg
-    url: https://morsel-dev-api-1087699136488.us-east1.run.app/v1/status
+    url: https://api.projectmorsel.com/v1/status
     maxResponseTime: 3000
   # The address people paste into their assistant. Without a sign-in it answers 401 with a
   # challenge, which shows the MCP endpoint is up and asking for sign-in as it should.
   - name: Assistant connection (MCP)
     slug: assistant-connection-mcp
     icon: https://status.projectmorsel.com/favicon.svg
-    url: https://morsel-dev-api-1087699136488.us-east1.run.app/mcp
+    url: https://api.projectmorsel.com/mcp
     expectedStatusCodes:
       - 401
     maxResponseTime: 3000
   - name: Web app
     slug: web-app
     icon: https://status.projectmorsel.com/favicon.svg
-    url: https://morsel-dev-web-1087699136488.us-east1.run.app/
+    url: https://app.projectmorsel.com/
   - name: Website
     slug: website
     icon: https://status.projectmorsel.com/favicon.svg
