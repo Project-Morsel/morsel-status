@@ -29,9 +29,9 @@ sites:
     url: https://projectmorsel.web.app/
 
 status-website:
-  # Served at https://project-morsel.github.io/morsel-status/ until status.projectmorsel.com
-  # points here; then replace baseUrl with: cname: status.projectmorsel.com
-  baseUrl: /morsel-status
+  # Needs the DNS record "CNAME status -> project-morsel.github.io". The github.io address
+  # redirects here.
+  cname: status.projectmorsel.com
   name: Morsel status
   logoUrl: https://projectmorsel.web.app/icon.svg
   introTitle: "Is Morsel up?"
