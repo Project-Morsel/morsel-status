@@ -1,0 +1,49 @@
+# Morsel's uptime monitor and status page, run by Upptime (https://upptime.js.org).
+# GitHub Actions check these addresses every five minutes, record the results in this
+# repository, open an issue when one is down and close it when it's back, and publish the
+# status website on GitHub Pages. Morsel's web app reads history/summary.json for its own
+# /status page.
+#
+# The source of truth for this file is infra/status/upptimerc.yml in Morsel's repository;
+# change it there and copy it here.
+
+owner: Project-Morsel
+repo: morsel-status
+
+sites:
+  # The live check of the API, the records database and the food catalog. It answers 503
+  # while any of them is down. (Until /v1/status is deployed, this checks /health.)
+  - name: Morsel service
+    url: https://morsel-dev-api-1087699136488.us-east1.run.app/health
+    maxResponseTime: 3000
+  # The address people paste into their assistant. Without a sign-in it answers 401 with a
+  # challenge, which shows the MCP endpoint is up and asking for sign-in as it should.
+  - name: Assistant connection (MCP)
+    url: https://morsel-dev-api-1087699136488.us-east1.run.app/mcp
+    expectedStatusCodes:
+      - 401
+    maxResponseTime: 3000
+  - name: Web app
+    url: https://morsel-dev-web-1087699136488.us-east1.run.app/
+  - name: Website
+    url: https://projectmorsel.web.app/
+
+status-website:
+  # Served at https://project-morsel.github.io/morsel-status/ until status.projectmorsel.com
+  # points here; then replace baseUrl with: cname: status.projectmorsel.com
+  baseUrl: /morsel-status
+  name: Morsel status
+  logoUrl: https://projectmorsel.web.app/icon.svg
+  introTitle: "Is Morsel up?"
+  introMessage: >-
+    An outside monitor checks Morsel every five minutes and keeps the record here. Morsel's
+    app has a live check of each part at its /status page.
+  theme: light
+  navbar:
+    - title: Status
+      href: /
+    - title: Morsel
+      href: https://projectmorsel.web.app/
+
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
