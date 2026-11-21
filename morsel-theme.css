@@ -1,0 +1,52 @@
+/* Morsel's colours for the Upptime status page (status-website.themeUrl). Upptime's own
+   stylesheets read these variables; morsel.css then sets type, spacing and shape. */
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Variable-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --forest: #12584b;
+  --oat: #f7f6ef;
+  --ink: #172b26;
+  --muted: #56675f;
+  --line: #d7ded4;
+  --citrus: #d9f06b;
+  --apricot: #f39258;
+  --complete-bg: #e5f0eb;
+  --partial-bg: #fff3d4;
+  --partial-ink: #845b13;
+  --error-bg: #fbeaea;
+  --error-ink: #a63737;
+
+  --body-background-color: var(--oat);
+  --body-text-color: var(--ink);
+  --card-background-color: #ffffff;
+  --nav-background-color: var(--oat);
+  --nav-border-bottom-color: var(--line);
+  --nav-current-border-bottom-color: var(--forest);
+  --card-border-color: var(--line);
+  --down-border-left-color: var(--error-ink);
+  --down-background-color: var(--error-bg);
+  --degraded-border-left-color: var(--apricot);
+  --up-border-left-color: var(--forest);
+  --tag-color: #ffffff;
+  --tag-up-background-color: var(--forest);
+  --tag-down-background-color: var(--error-ink);
+  --tag-degraded-background-color: var(--partial-ink);
+  --change-background-color: var(--citrus);
+  --error-button-border-color: var(--forest);
+  --error-button-background-color: var(--forest);
+  --error-button-color: #ffffff;
+  --submit-button-border-color: var(--forest);
+  --submit-button-background-color: var(--forest);
+  --submit-button-color: #ffffff;
+  --code-color: var(--ink);
+  --code-background-color: var(--complete-bg);
+  --graph-opacity: 0.6;
+  --graph-filter: none;
+}
