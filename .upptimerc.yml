@@ -59,7 +59,7 @@ status-website:
   introTitle: "Is Morsel up?"
   introMessage: >-
     Availability and recent incidents for Morsel. An outside monitor checks each service
-    about every five minutes. Monitoring began on 21 November 2026, so uptime covers only
+    about every five minutes. Monitoring began on November 21, 2026, so uptime covers only
     the days since.
   navbar:
     - title: Morsel
