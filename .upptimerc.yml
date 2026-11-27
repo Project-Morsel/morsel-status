@@ -4,8 +4,9 @@
 # status website on GitHub Pages. Morsel's web app reads history/summary.json for its own
 # /status page.
 #
-# The source of truth for this file is infra/status/upptimerc.yml in Morsel's repository;
-# change it there and copy it here.
+# This file is the source of truth. A copy lives at infra/status/upptimerc.yml in Morsel's
+# repository: change it here, then copy it there, keeping that copy's header comment
+# (Morsel's docs/runbooks/status-page.md).
 
 owner: Project-Morsel
 repo: morsel-status
