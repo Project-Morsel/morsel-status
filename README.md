@@ -24,6 +24,12 @@ open-source monitor that uses GitHub Actions, Issues and Pages.
 
 ## Look and words
 
+The page's words follow Morsel's
+[writing guide](https://github.com/Project-Morsel/morsel/blob/main/docs/website/writing-guide.md)
+for how they sound, and its
+[voice rules](https://github.com/Project-Morsel/morsel/blob/main/architecture/standards/voice.md)
+for what they may say. Run the guide's checklist on any new or changed words.
+
 Branding uses only Upptime's supported settings, so template updates don't undo it:
 
 - `.upptimerc.yml` → `status-website`: name, logo, favicon, `themeUrl` (colours),
